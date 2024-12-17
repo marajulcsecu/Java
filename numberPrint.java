@@ -7,7 +7,7 @@ public class numberPrint {
         int number= input.nextInt();
         for(int i=1; i<=number;i++)
         {
-            System.out.println(i);
+            System.out.println( i +"th number is "+i);
         }
 
     }

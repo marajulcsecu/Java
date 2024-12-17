@@ -1,0 +1,13 @@
+[1mdiff --git a/numberPrint.java b/numberPrint.java[m
+[1mindex 2f74d3d..0d15527 100644[m
+[1m--- a/numberPrint.java[m
+[1m+++ b/numberPrint.java[m
+[36m@@ -7,7 +7,7 @@[m [mpublic class numberPrint {[m
+         int number= input.nextInt();[m
+         for(int i=1; i<=number;i++)[m
+         {[m
+[31m-            System.out.println(i);[m
+[32m+[m[32m            System.out.println( i +"th number is "+i);[m
+         }[m
+ [m
+     }[m
