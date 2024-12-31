@@ -1,4 +1,4 @@
-package CollectionAndGenerics;
+package CollectionAndGenerics.varargs;
 
 public class varargs {
 
