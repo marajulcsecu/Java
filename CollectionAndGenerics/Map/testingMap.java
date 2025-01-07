@@ -10,7 +10,6 @@ public class testingMap {
         map.put("soreful",31);
         map.put("sharifa",27);
         System.out.println(map.size());
-//madmakhhdjndsjsndjksbhsvbchj
         System.out.println(map.get("soreful"));
         System.out.println(map.containsKey("sharifa"));
         System.out.println(map.remove("marajul"));

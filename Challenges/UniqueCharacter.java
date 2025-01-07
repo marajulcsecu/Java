@@ -8,7 +8,7 @@ public class UniqueCharacter {
     public static void main(String[] args) {
         Set<Character> unique = new HashSet<>();
         Scanner input = new Scanner(System.in);
-        System.out.println("please enter your string: ");
+        System.out.print("please enter your string: ");
         String userStr = input.next();
         for (char c : userStr.toCharArray()) {
             unique.add(c);
