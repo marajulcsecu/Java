@@ -2,9 +2,6 @@ package Multithreading.runnable;
 
 public class PrintTask implements Runnable {
 
-    public PrintTask(char targetChar) {
-        this.targetChar = targetChar;
-    }
 
     @Override
     public void run() {
@@ -17,4 +14,8 @@ public class PrintTask implements Runnable {
                 targetChar);
     }
     private final char targetChar;
+    public PrintTask(char targetChar) {
+        this.targetChar = targetChar;
+    }
+
 }
