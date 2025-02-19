@@ -13,8 +13,9 @@ strList.add(1,"sharifa");
 strList.set(0,"hafsa");
 
 
+
 strList.clear();
-strList.removeFirst();
+//strList.removeFirst();
 
         for (String s : strList) {
             System.out.println(s);
