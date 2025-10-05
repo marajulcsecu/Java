@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBMS Study Checklist (2017-2022)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .overall-progress {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .progress-container {
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 25px;
+            background: #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            border-radius: 12px;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .category {
+            margin-bottom: 25px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .category-header:hover {
+            background: linear-gradient(135deg, #5a6268, #343a40);
+        }
+
+        .category-header h2 {
+            font-size: 1.4em;
+            margin: 0;
+        }
+
+        .category-toggle {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .category-content {
+            display: none;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .category-content.active {
+            display: block;
+        }
+
+        .category-progress {
+            margin-bottom: 20px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .topic-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        .topic-item.completed {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .topic-checkbox {
+            margin-right: 15px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .topic-label {
+            flex: 1;
+            font-size: 1em;
+            line-height: 1.4;
+        }
+
+        .frequency-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .freq-6 { background: #dc3545; }
+        .freq-5 { background: #fd7e14; }
+        .freq-4 { background: #ffc107; color: #333; }
+        .freq-3 { background: #28a745; }
+        .freq-2 { background: #007bff; }
+        .freq-1 { background: #6f42c1; }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .legend {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 DBMS Study Checklist</h1>
+            <p>Complete Coverage of Topics from 2017-2022 Exam Papers</p>
+        </div>
+
+        <div class="overall-progress">
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Overall Progress</span>
+                    <span id="overall-percentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overall-progress-fill" style="width: 0%;">0%</div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color freq-6"></div>
+                    <span>6 Years (Critical)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color freq-5"></div>
+                    <span>5 Years (Very Important)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color freq-4"></div>
+                    <span>4 Years (Important)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color freq-3"></div>
+                    <span>3 Years (Moderate)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color freq-2"></div>
+                    <span>2 Years (Less Common)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color freq-1"></div>
+                    <span>1 Year (Rare)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Category 1: Database Design and Modeling -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>🎨 Database Design and Modeling</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">ER Modeling - Basic Concepts</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">ER Modeling - Chen Notation</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">ER Modeling - Min-Max Notation</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">ER Modeling - Recursive Relationships</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Data Modeling for Sample Datasets</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Data Cleaning and Noise Handling</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Case Studies (Museum, COVID-19, etc.)</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Type Declaration Systems (DB vs Programming)</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Model Support for Data Inference</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Decomposed Tables from ER</span>
+                        <span class="frequency-badge freq-4">4</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Composite & Derived Attributes</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Mapping Cardinality</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Multivalued Attributes</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Schema Evolution</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Data Abstraction Levels</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Database Architectures (2-tier, 3-tier)</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Degree of Relations</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Instance vs Schema</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Weak vs Strong Entities</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Relationship Representation in Relational Models</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="1">
+                        <span class="topic-label">Entity in ER vs Object-Oriented Model</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: Normalization and Relational Concepts -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>🔧 Normalization and Relational Concepts</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Functional Dependencies - Definition</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Functional Dependencies - Closure Computation</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Normal Forms - 3NF</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Normal Forms - BCNF</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Primary Keys - Definition and Usage</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Foreign Keys - Definition and Usage</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Attribute Closure Computation</span>
+                        <span class="frequency-badge freq-4">4</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="2">
+                        <span class="topic-label">Normalization Anomalies (Insert, Update, Delete)</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3: SQL and Query Processing -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>💾 SQL and Query Processing</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Basic SQL Queries - SELECT Statement</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Basic SQL Queries - WHERE Clause</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Basic SQL Queries - JOIN Operations</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Aggregate Functions - COUNT</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Aggregate Functions - SUM</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">GROUP BY Clause</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">ORDER BY Clause</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">DML Operations - INSERT</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">DML Operations - UPDATE</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">DML Operations - DELETE</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Subqueries - NOT IN</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Subqueries - ALL Operator</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Subqueries - Existence Checks</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Relational Algebra - Projection</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Relational Algebra - Selection</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Relational Algebra - Join Operations</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">HAVING Clause</span>
+                        <span class="frequency-badge freq-4">4</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">SQL Operators Equivalences</span>
+                        <span class="frequency-badge freq-3">3</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Views - Definition and Creation</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Views - Update Restrictions</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Nested Subqueries</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Indicators in Relational Databases</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Date Handling in Queries</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Cartesian Product vs Natural Join</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="3">
+                        <span class="topic-label">Query Processing Steps</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4: Query Optimization -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>⚡ Query Optimization</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="4">
+                        <span class="topic-label">Execution Plans - Comparison and Identification</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="4">
+                        <span class="topic-label">Execution Plans - Heuristics</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="4">
+                        <span class="topic-label">Query Evaluation Strategies</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="4">
+                        <span class="topic-label">SQL Clause Order in Evaluation</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 5: Schema Mapping and Constraints -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>🗂️ Schema Mapping and Constraints</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">ER-to-Relational Mapping</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">Database Constraints - Declaration</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">Database Constraints - Referential Integrity</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">Triggers - Definitions and Examples</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">Triggers - Logging and Error Handling</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">Materialized Views</span>
+                        <span class="frequency-badge freq-3">3</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">RAID Levels</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">Data Dictionary Storage</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="5">
+                        <span class="topic-label">File Processing vs Relational DB</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 6: Transaction Management and Concurrency -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>🔄 Transaction Management and Concurrency</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Recoverable Schedules</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Cascadeless Schedules</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Two-Phase Locking (2PL)</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Strict Two-Phase Locking</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Rigorous Two-Phase Locking</span>
+                        <span class="frequency-badge freq-5">5</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Conflict Serializability</span>
+                        <span class="frequency-badge freq-4">4</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Concurrent Execution Problems</span>
+                        <span class="frequency-badge freq-4">4</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">ACID Properties</span>
+                        <span class="frequency-badge freq-4">4</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Schedules and Logs</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="6">
+                        <span class="topic-label">Deadlocks</span>
+                        <span class="frequency-badge freq-1">1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 7: Recovery and Logging -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>🔧 Recovery and Logging</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="7">
+                        <span class="topic-label">Log-Based Recovery - Redo Operations</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="7">
+                        <span class="topic-label">Log-Based Recovery - Undo Operations</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="7">
+                        <span class="topic-label">Log-Based Recovery - Crash Recovery</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="7">
+                        <span class="topic-label">Log Structures - Commit Entries</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="7">
+                        <span class="topic-label">Log Structures - Abort Entries</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="7">
+                        <span class="topic-label">Log Structures - Checkpoints</span>
+                        <span class="frequency-badge freq-6">6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 8: Advanced Database Concepts -->
+            <div class="category">
+                <div class="category-header" onclick="toggleCategory(this)">
+                    <h2>🚀 Advanced Database Concepts</h2>
+                    <span class="category-toggle">▼</span>
+                </div>
+                <div class="category-content">
+                    <div class="progress-container category-progress">
+                        <div class="progress-label">
+                            <span>Category Progress</span>
+                            <span class="category-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill category-progress-fill" style="width: 0%;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="8">
+                        <span class="topic-label">Data Warehousing vs Data Mining</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="8">
+                        <span class="topic-label">OLAP System Design</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="8">
+                        <span class="topic-label">Distributed vs Centralized DB</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                    <div class="topic-item">
+                        <input type="checkbox" class="topic-checkbox" data-category="8">
+                        <span class="topic-label">Fixed vs Variable-Length Records</span>
+                        <span class="frequency-badge freq-2">2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load progress from localStorage
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('dbms-checklist-progress');
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                progress.forEach(isChecked => {
+                    const checkbox = document.querySelectorAll('.topic-checkbox')[progress.indexOf(isChecked)];
+                    if (checkbox) {
+                        checkbox.checked = isChecked;
+                        if (isChecked) {
+                            checkbox.closest('.topic-item').classList.add('completed');
+                        }
+                    }
+                });
+                updateAllProgress();
+            }
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('.topic-checkbox');
+            const progress = Array.from(checkboxes).map(cb => cb.checked);
+            localStorage.setItem('dbms-checklist-progress', JSON.stringify(progress));
+        }
+
+        // Toggle category visibility
+        function toggleCategory(header) {
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.category-toggle');
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('active');
+                toggle.textContent = '▲';
+            }
+        }
+
+        // Update progress for a specific category
+        function updateCategoryProgress(categoryNumber) {
+            const categoryCheckboxes = document.querySelectorAll(`[data-category="${categoryNumber}"]`);
+            const checkedCount = Array.from(categoryCheckboxes).filter(cb => cb.checked).length;
+            const percentage = Math.round((checkedCount / categoryCheckboxes.length) * 100);
+            
+            const category = document.querySelector(`[data-category="${categoryNumber}"]`).closest('.category');
+            const progressFill = category.querySelector('.category-progress-fill');
+            const progressPercentage = category.querySelector('.category-percentage');
+            
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+            progressPercentage.textContent = percentage + '%';
+        }
+
+        // Update overall progress
+        function updateOverallProgress() {
+            const allCheckboxes = document.querySelectorAll('.topic-checkbox');
+            const checkedCount = Array.from(allCheckboxes).filter(cb => cb.checked).length;
+            const percentage = Math.round((checkedCount / allCheckboxes.length) * 100);
+            
+            const progressFill = document.getElementById('overall-progress-fill');
+            const progressPercentage = document.getElementById('overall-percentage');
+            
+            progressFill.style.width = percentage + '%';
+            progressFill.textContent = percentage + '%';
+            progressPercentage.textContent = percentage + '%';
+        }
+
+        // Update all progress bars
+        function updateAllProgress() {
+            // Update each category
+            for (let i = 1; i <= 8; i++) {
+                updateCategoryProgress(i);
+            }
+            
+            // Update overall progress
+            updateOverallProgress();
+        }
+
+        // Add event listeners to all checkboxes
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.topic-checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const topicItem = this.closest('.topic-item');
+                    if (this.checked) {
+                        topicItem.classList.add('completed');
+                    } else {
+                        topicItem.classList.remove('completed');
+                    }
+                    
+                    updateAllProgress();
+                    saveProgress();
+                });
+            });
+            
+            // Load saved progress
+            loadProgress();
+        });
+    </script>
+</body>
+</html>
